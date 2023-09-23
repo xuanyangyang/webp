@@ -6,7 +6,9 @@ package xuanyangyang.webp;
  */
 public interface WebpConverter {
 
-    boolean cwebp(CwebpParam param);
+    boolean encode(EncodeParam param) throws Exception;
 
-    boolean dwebp(DwebpParam param);
+    boolean decode(DecodeParam param) throws Exception;
+
+    boolean support(String imgType);
 }
