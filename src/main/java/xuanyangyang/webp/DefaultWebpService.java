@@ -1,5 +1,6 @@
 package xuanyangyang.webp;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -8,7 +9,14 @@ import java.util.UUID;
 
 public class DefaultWebpService implements WebpService {
     private final List<WebpConverter> converterList = new ArrayList<>();
-    private final String IMAGES_DIR = "images";
+    private static final String IMAGES_DIR = "images";
+
+    public DefaultWebpService() {
+        File dir = new File(IMAGES_DIR);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+    }
 
     @Override
     public boolean support(String imgType) {
@@ -35,7 +43,9 @@ public class DefaultWebpService implements WebpService {
                     param.setInputFile(inputFile);
                     param.setOutputFile(outputFile);
                     param.setEnableLossy(true);
-                    converter.encode(param);
+                    if (!converter.encode(param)) {
+                        throw new RuntimeException("无法转换成webp");
+                    }
                     byte[] result = Files.readAllBytes(outputPath);
                     return result;
                 } finally {

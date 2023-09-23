@@ -8,6 +8,6 @@ public class WebpFileManager {
     }
 
     public String getFile(String fileName) {
-        return webpHome + "/" + fileName;
+        return webpHome + "/bin/" + fileName;
     }
 }
