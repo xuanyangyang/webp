@@ -25,7 +25,6 @@ public class Img2WebpConverter implements WebpConverter {
     public boolean encode(EncodeParam param) throws IOException, InterruptedException {
         String cwebp = fileManager.getFile("cwebp");
         String command = cwebp + " -m 6 " + param.getInputFile() + " -o " + param.getOutputFile();
-        System.out.println(command);
         Process exec = Runtime.getRuntime().exec(command);
         int exitCode = exec.waitFor();
         return exitCode == 0;
