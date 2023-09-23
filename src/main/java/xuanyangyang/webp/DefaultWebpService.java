@@ -56,6 +56,7 @@ public class DefaultWebpService implements WebpService {
         WebpFileManager webpFileManager = new WebpFileManager(webpHome);
         DefaultWebpService defaultWebpService = new DefaultWebpService();
         defaultWebpService.addConverter(new Img2WebpConverter(webpFileManager));
+        defaultWebpService.addConverter(new Gif2WebpConverter(webpFileManager));
         return defaultWebpService;
     }
 }
